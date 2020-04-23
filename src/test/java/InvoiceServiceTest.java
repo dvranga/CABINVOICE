@@ -49,4 +49,23 @@ public class InvoiceServiceTest {
         InvocieSummary expectedSummary =new InvocieSummary( 2,30.0 );
         Assert.assertEquals( expectedSummary,summary );
     }
+
+    @Test
+    public void givenPremiumRides_ShouldSupportTwoCategoriesAnd_ShouldReturnTotalFare() {
+        Ride[] rides ={new Ride( 2.0, 5 ),
+                new Ride(0.1,1)
+        } ;
+        InvocieSummary summary= this.invocieService.calculatorFare( InvocieService.SERVICETYPE.PREMIUM,rides );
+        InvocieSummary expectedInvocieSummary = new InvocieSummary( 2, 60.0 );
+        Assert.assertEquals( expectedInvocieSummary,summary );
+    }
+    @Test
+    public void givenPremiumRides_ShouldSupportTwoCategoriesAnd_ShouldReturnTotalFare1() {
+        Ride[] rides ={new Ride( 2.0, 5 ),
+                new Ride(0.1,1)
+        } ;
+        InvocieSummary summary= this.invocieService.calculatorFare( InvocieService.SERVICETYPE.NORMAL,rides );
+        InvocieSummary expectedInvocieSummary = new InvocieSummary( 2, 30.0 );
+        Assert.assertEquals( expectedInvocieSummary,summary );
+    }
 }
